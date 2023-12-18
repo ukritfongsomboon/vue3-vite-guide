@@ -37,7 +37,40 @@ export default defineConfig({
 ## 2 Set './src' to '@' path
 
 ```javascript
+import path from 'path'
 
+// https://vitejs.dev/config/
+export default defineConfig({
+    ...
+    resolve : {
+      alias: {
+        '@/': `${path.resolve(__dirname, 'src')}/`
+      }
+    },
+    ...
+})
+```
+
+หากพบ Error "Cannot find name '\_\_dirname'" หรือ "Cannot find module 'path' or its corresponding type declarations." ให้แก้ดังต่อไปนี้
+
+### FIX Problem
+
+-   install @types/node
+
+```npm
+npm i -D @types/node
+```
+
+-   Add typing in "tsconfig.json"
+
+```json
+{
+  ...
+  "types": [
+      "node"
+  ],
+  ...
+}
 ```
 
 ## 3 Vue Router
