@@ -53,7 +53,7 @@ export default defineConfig({
 
 หากพบ Error "Cannot find name '\_\_dirname'" หรือ "Cannot find module 'path' or its corresponding type declarations." ให้แก้ดังต่อไปนี้
 
-### FIX Problem
+### FIX Problem [Reference](https://bobbyhadz.com/blog/typescript-export-interface)
 
 -   install @types/node
 
@@ -70,6 +70,26 @@ npm i -D @types/node
       "node"
   ]
   ...
+}
+```
+
+หากพบ Error "Cannot find module '@/xxxxxx.ts' or its corresponding type declarations."
+
+### FIX Problem [Reference](https://stackoverflow.com/questions/54839057/vscode-showing-cannot-find-module-ts-error-for-vue-import-while-compiling-doe)
+
+-   Add typing in "tsconfig.json"
+
+```typescript
+{
+  "compilerOptions": {
+    /* other configs */
+    "paths": {
+      "@/*": [
+        "./src/*" // set path `@/*` as alias of `src/*`
+      ]
+    },
+    /* other configs */
+  }
 }
 ```
 
