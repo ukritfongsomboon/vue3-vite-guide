@@ -63,12 +63,12 @@ npm i -D @types/node
 
 -   Add typing in "tsconfig.json"
 
-```json
+```javascript
 {
   ...
   "types": [
       "node"
-  ],
+  ]
   ...
 }
 ```
