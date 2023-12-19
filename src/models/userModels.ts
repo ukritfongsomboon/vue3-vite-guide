@@ -2,7 +2,7 @@ interface User {
     userId: number
     firstName: string
     lastname: string
-    phone: string
+    phone?: string // ignore field
 }
 
 interface Users extends Array<User> {}
@@ -11,4 +11,4 @@ interface Users extends Array<User> {}
 //     [index: number]: User
 // }
 
-export type { User ,Users}
+export type { User, Users }

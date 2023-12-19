@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, onBeforeMount } from 'vue'
 import { Users, User } from '@/models/userModels.ts'
 
 // NOTE Props ----------------------------
@@ -13,19 +13,35 @@ interface Props {
 defineProps<Props>()
 // NOTE -----------------------------------
 
+function a1(val: string) {
+    console.log(val)
+}
+
+onMounted(() => {
+    a1('onMounted')
+})
+
+a1('create')
+
+onBeforeMount(() => {
+    a1('onBeforeMount')
+})
+
 // NOTE การประกาศ Ref จาก Type ที่เราสร้างขึ้น
 const users = ref<Users>([])
 // OR
 // let users = ref<User[]>([])
 
+let a = 15
+
 let user = ref<User>({
     userId: 1234,
     firstName: 'Ukrit',
     lastname: 'fongsomboon',
-    phone: '0812345678',
+    // phone: '0812345678',
 })
 
-user.value.phone = "0987654321"
+user.value.phone = '0987654321'
 
 users.value.push(user.value)
 // OR
