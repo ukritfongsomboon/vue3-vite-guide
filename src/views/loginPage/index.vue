@@ -14,7 +14,7 @@
 import uBtn from '@/components/Button/index.vue'
 import uTextField from '@/components/Textfield/index.vue'
 import { loginModel } from '@/models/loginModels'
-import { SignIn } from '@/Services/userSrv'
+import { useUserSrv } from '@/services/userSrv'
 import { ref } from 'vue'
 
 export default {
@@ -31,8 +31,8 @@ export default {
             password: '',
         })
 
-        function onClikSignIn() {
-            const x = SignIn(loginModel.value)
+        async function onClikSignIn() {
+            const x = await useUserSrv.SignIn(loginModel.value)
             console.log(x)
         }
         return { onClikSignIn, title, loginModel }
