@@ -1,11 +1,14 @@
+// NOTE สร้าง Interface Error Format ที่จะใช้สำหรับ Type Local Error
 interface localError extends Error {
     status: boolean
     message: string
     Error(msg: string): localError
     None(): localError
 }
+// NOTE Export Type Error
 export type { localError }
 
+// NOTE สร้าง Class ของ Error จาก Interface
 class e implements localError {
     status: boolean
     message: string
@@ -33,6 +36,8 @@ class e implements localError {
     }
 }
 
+// NOTE Create Error Object
 const error = new e()
 
+// NOTE Export Error Object
 export { error }
