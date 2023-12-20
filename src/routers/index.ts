@@ -10,9 +10,9 @@ import landingPage from '@/views/landinfPage/index.vue'
 // Each route should map to a component.
 // We'll talk about nested routes later.
 const routes = [
-    { path: '/', name: 'landingPage', component: landingPage },
-    { path: '/login', name: 'loginPage', component: loginPage },
-    { path: '/home', name: 'homePage', component: homePageIndex },
+    { path: '/', name: 'landingPage', component: landingPage, meta: { requiresAuth: false } },
+    { path: '/login', name: 'loginPage', component: loginPage, meta: { requiresAuth: false } },
+    { path: '/home', name: 'homePage', component: homePageIndex, meta: { requiresAuth: true } },
 ]
 
 // 3. Create the router instance and pass the `routes` option

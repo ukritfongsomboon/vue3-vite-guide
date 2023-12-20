@@ -1,15 +1,15 @@
 // NOTE สร้าง Interface Error Format ที่จะใช้สำหรับ Type Local Error
-interface localError extends Error {
+interface customError extends Error {
     status: boolean
     message: string
-    Error(msg: string): localError
-    None(): localError
+    Error(msg: string): customError
+    None(): customError
 }
 // NOTE Export Type Error
-export type { localError }
+export type { customError }
 
 // NOTE สร้าง Class ของ Error จาก Interface
-class e implements localError {
+class e implements customError {
     status: boolean
     message: string
     name: string
@@ -19,16 +19,16 @@ class e implements localError {
         this.name = ''
     }
 
-    public Error(msg: string): localError {
-        const e = <localError>{
+    public Error(msg: string): customError {
+        const e = <customError>{
             status: true,
             message: msg,
         }
         return e
     }
 
-    public None(): localError {
-        const e = <localError>{
+    public None(): customError {
+        const e = <customError>{
             status: false,
             message: '',
         }

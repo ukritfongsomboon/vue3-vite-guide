@@ -67,7 +67,8 @@ import uBtn from '@/components/Button/index.vue'
 import uTextField from '@/components/Textfield/index.vue'
 import { loginModel } from '@/models/loginModels'
 import { useUserSrv } from '@/services/userSrv'
-import { ref, computed } from 'vue'
+import { ref ,computed} from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
 export default {
     components: {
@@ -76,6 +77,9 @@ export default {
     },
     setup() {
         const title = ref('Hello world')
+        const router = useRouter()
+        const route = useRoute()
+        console.log(route)
 
         // NOTE สร้างตัวแปรแบบ side effect ด้วย Interface
         const loginModel = ref<loginModel>({
@@ -85,7 +89,7 @@ export default {
 
         async function onClikSignIn() {
             const x = await useUserSrv.SignIn(loginModel.value)
-            console.log('handler-->', x)
+            if (x) router.push({ name: 'homePage' })
         }
 
         const disabled = computed(() => {
