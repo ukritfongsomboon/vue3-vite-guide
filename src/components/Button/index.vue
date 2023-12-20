@@ -1,11 +1,12 @@
 <template>
-    <button
-        class="button"
+    <a-button
         @click="emit('click')"
-        :style="`background-color: ${props.color};`"
+        type="primary"
+        :block="props.block"
+        :disabled="disabled"
     >
-        <slot></slot>
-    </button>
+        <slot></slot
+    ></a-button>
 </template>
 
 <script setup lang="ts">
@@ -13,6 +14,7 @@
 interface PropsModel {
     color?: string
     block?: boolean
+    disabled?: boolean
 }
 // NOTE ค่า Props เริ่มต้น
 const props = withDefaults(defineProps<PropsModel>(), {

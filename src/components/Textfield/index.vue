@@ -1,8 +1,8 @@
 <template>
-    <input
+    <a-input
         :value="props.modelValue"
-        type="text"
         @input="onInput"
+        :placeholder="props.placeholder"
     />
 </template>
 
@@ -10,6 +10,7 @@
 // NOTE Model สำหรับค่า Props สำหรับ Component
 interface PropsModel {
     modelValue?: string
+    placeholder?: string
 }
 // NOTE ค่า Props เริ่มต้น
 const props = withDefaults(defineProps<PropsModel>(), {
