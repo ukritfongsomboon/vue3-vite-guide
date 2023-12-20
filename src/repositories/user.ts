@@ -1,8 +1,14 @@
+import { error } from '@/utils/error'
+interface userSigninModel {
+    username: string
+    password: string
+}
+
+export type { userSigninModel }
+
+// TODO ---------------------------------
 interface userRepo {
-    Get(): Promise<string>
-    Post(): Promise<string>
-    Put(): Promise<string>
-    Delete(): Promise<string>
+    SignInAPI(payload: userSigninModel): Promise<[error, string]>
 }
 
 export default userRepo

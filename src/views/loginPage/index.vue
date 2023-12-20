@@ -85,7 +85,7 @@ export default {
 
         async function onClikSignIn() {
             const x = await useUserSrv.SignIn(loginModel.value)
-            console.log(x)
+            console.log('handler-->', x)
         }
 
         const disabled = computed(() => {

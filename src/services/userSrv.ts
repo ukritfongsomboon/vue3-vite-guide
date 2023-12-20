@@ -16,9 +16,9 @@ class UserSrv implements userSrv {
     // NOTE Method "signin" โดยจะมี Parameter เป็น Type "loginModel"
     // NOTE และจะ Return เป็น Type "Booleen"
     public async SignIn(payload: loginModel): Promise<boolean> {
-        console.log(await this._userRepo.Get())
-        if (payload.username == 'admin' && payload.password == '1234') return true
-        else return false
+        const [err, val] = await this._userRepo.SignInAPI(payload)
+        if (err.status) return false
+        else return true
     }
 
     // NOTE Method "signup"
