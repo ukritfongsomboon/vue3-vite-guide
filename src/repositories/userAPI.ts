@@ -1,4 +1,4 @@
-import userRepo from '@/repositories/user'
+import {userRepo} from '@/repositories/user'
 import { userSigninModel } from '@/repositories/user'
 import { error, customError } from '@/models/errorModels'
 
@@ -9,6 +9,6 @@ class UserRepo implements userRepo {
     }
 }
 
-const useUserRepo = new UserRepo()
+// const useUserRepo = new UserRepo()
 
-export default useUserRepo
+export default UserRepo

@@ -3,9 +3,9 @@ import { userSrv } from '@/services/user'
 import { request } from '@/utils/request/request'
 import { userRepo } from '@/repositories/user'
 
-import UserRepo from '@/repositories/userAPI'
-import str from '@/utils/storage/storageLS'
-import req from '@/utils/request/requestAxios'
+// import UserRepo from '@/repositories/userAPI'
+// import str from '@/utils/storage/storageLS'
+// import req from '@/utils/request/requestAxios'
 import { storage } from '@/utils/storage/storage'
 
 // NOTE นำ Interface มาส้างเป็น Class ที่มีองประกอบตาม Interface
@@ -54,4 +54,5 @@ class UserSrv implements userSrv {
 }
 
 // NOTE สร้าง Object จาก Class และ Return ออกไปสู่โลกภายนอก
-export default new UserSrv(UserRepo, req, str)
+export default UserSrv
+// export default new UserSrv(UserRepo, req, str)

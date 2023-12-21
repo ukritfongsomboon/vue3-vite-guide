@@ -19,4 +19,5 @@ class StorageLocalStorage implements storage {
 }
 
 
-export default new StorageLocalStorage()
+export default StorageLocalStorage
+// export default new StorageLocalStorage()

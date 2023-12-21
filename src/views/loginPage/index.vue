@@ -63,14 +63,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, inject } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import uBtn from '@/components/Button/index.vue'
 import uTextField from '@/components/Textfield/index.vue'
 import { loginModel as LoginModel } from '@/models/loginModels'
-import useUserSrv from '@/services/userSrv'
-
-console.log(await useUserSrv.GetUsers())
+import { userSrv } from '@/services/user'
+const useUserSrv = inject('$userSrv') as userSrv
 
 const router = useRouter()
 const route = useRoute()

@@ -33,4 +33,4 @@ class RequestAxios implements request {
     }
 }
 
-export default new RequestAxios()
+export default RequestAxios
