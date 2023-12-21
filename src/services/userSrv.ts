@@ -2,17 +2,20 @@ import { loginModel } from '@/models/loginModels'
 import userSrv from '@/services/user'
 import userRepo from '@/repositories/user'
 import UserRepo from '@/repositories/userAPI'
-import storage from '@/repositories/storageLS'
-
+import storage from '@/utils/storage/storageLS'
+import { request } from '@/utils/request/request'
+import req from '@/utils/request/requestAxios'
 
 // NOTE นำ Interface มาส้างเป็น Class ที่มีองประกอบตาม Interface
 class UserSrv implements userSrv {
     // NOTE declare our property types
     private _userRepo: userRepo
+    private _req: request
 
     // NOTE Constructure Of Class UserSrv
-    constructor(userRepo: userRepo) {
+    constructor(userRepo: userRepo, req: request) {
         this._userRepo = userRepo
+        this._req = req
     }
 
     // NOTE Method "signin" โดยจะมี Parameter เป็น Type "loginModel"
@@ -22,7 +25,7 @@ class UserSrv implements userSrv {
 
         // TODO Calling Repository
         const [err, val] = await this._userRepo.SignInAPI(payload)
-        if (err.status) return false
+        if (err != null) return false
 
         // storage.Clear()
         // NOTE SET Local Storage
@@ -30,8 +33,8 @@ class UserSrv implements userSrv {
         return true
     }
 
-     // NOTE Method "signup"
-     public async SignOut(): Promise<boolean> {
+    // NOTE Method "signup"
+    public async SignOut(): Promise<boolean> {
         storage.Clear()
         return true
     }
@@ -40,11 +43,11 @@ class UserSrv implements userSrv {
     public async SignUp(): Promise<boolean> {
         return true
     }
+
+    public async GetUsers() {
+        return await this._req.Send({ url: 'https://jsonplaceholder.typicode.com/users', method: 'get' })
+    }
 }
 
 // NOTE สร้าง Object จาก Class และ Return ออกไปสู่โลกภายนอก
-const useUserSrv = new UserSrv(UserRepo)
-
-// NOTE Return Srv
-
-export { useUserSrv }
+export default new UserSrv(UserRepo, req)

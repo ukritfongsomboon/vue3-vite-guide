@@ -35,7 +35,6 @@
             <a-menu
                 v-model:openKeys="state.openKeys"
                 v-model:selectedKeys="state.selectedKeys"
-            
                 :mode="state.mode"
                 :items="items"
                 theme="dark"
@@ -63,7 +62,7 @@
 </template>
 <script setup lang="ts">
 import { h, ref, reactive } from 'vue'
-import { UserOutlined, VideoCameraOutlined, UploadOutlined, MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
+import {  MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
 
 const onCollapse = (collapsed: any, type: any) => {
     console.log(collapsed, type)

@@ -62,42 +62,35 @@
     </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+import { ref, computed } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import uBtn from '@/components/Button/index.vue'
 import uTextField from '@/components/Textfield/index.vue'
-import { loginModel } from '@/models/loginModels'
-import { useUserSrv } from '@/services/userSrv'
-import { ref ,computed} from 'vue'
-import { useRouter, useRoute } from 'vue-router'
+import { loginModel as LoginModel } from '@/models/loginModels'
+import useUserSrv from '@/services/userSrv'
 
-export default {
-    components: {
-        uBtn,
-        uTextField,
-    },
-    setup() {
-        const title = ref('Hello world')
-        const router = useRouter()
-        const route = useRoute()
-        console.log(route)
+console.log(await useUserSrv.GetUsers())
 
-        // NOTE สร้างตัวแปรแบบ side effect ด้วย Interface
-        const loginModel = ref<loginModel>({
-            username: '',
-            password: '',
-        })
+const router = useRouter()
+const route = useRoute()
+console.log(route)
 
-        async function onClikSignIn() {
-            const x = await useUserSrv.SignIn(loginModel.value)
-            if (x) router.push({ name: 'homePage' })
-        }
+// NOTE สร้างตัวแปรแบบ side effect ด้วย Interface
+const loginModel = ref<LoginModel>({
+    username: '',
+    password: '',
+})
 
-        const disabled = computed(() => {
-            return !(loginModel.value.username && loginModel.value.password)
-        })
-        return { onClikSignIn, title, loginModel, disabled }
-    },
+async function onClikSignIn() {
+    const x = await useUserSrv.SignIn(loginModel.value)
+    if (x) router.push({ name: 'homePage' })
+    else console.error('SignIn Fail')
 }
+
+const disabled = computed(() => {
+    return !(loginModel.value.username && loginModel.value.password)
+})
 </script>
 
 <style scoped>

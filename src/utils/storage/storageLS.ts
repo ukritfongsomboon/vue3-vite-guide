@@ -1,6 +1,6 @@
-import { storage } from '@/repositories/storage'
+import { storage } from '@/utils/storage/storage'
 
-class StorageLocalStorageRepo implements storage {
+class StorageLocalStorage implements storage {
     public async Get(key: string): Promise<string | null> {
         return localStorage.getItem(key)
     }
@@ -18,5 +18,5 @@ class StorageLocalStorageRepo implements storage {
     }
 }
 
-const useStorageLSRepo = new StorageLocalStorageRepo()
-export default useStorageLSRepo
+
+export default new StorageLocalStorage()
