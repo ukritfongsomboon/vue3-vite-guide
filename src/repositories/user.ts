@@ -11,4 +11,4 @@ interface userRepo {
     SignInAPI(payload: userSigninModel): Promise<[customError | null, any]>
 }
 
-export default userRepo
+export type { userRepo }

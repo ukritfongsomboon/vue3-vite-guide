@@ -1,21 +1,25 @@
 import { loginModel } from '@/models/loginModels'
-import userSrv from '@/services/user'
-import userRepo from '@/repositories/user'
-import UserRepo from '@/repositories/userAPI'
-import storage from '@/utils/storage/storageLS'
+import { userSrv } from '@/services/user'
 import { request } from '@/utils/request/request'
+import { userRepo } from '@/repositories/user'
+
+import UserRepo from '@/repositories/userAPI'
+import str from '@/utils/storage/storageLS'
 import req from '@/utils/request/requestAxios'
+import { storage } from '@/utils/storage/storage'
 
 // NOTE นำ Interface มาส้างเป็น Class ที่มีองประกอบตาม Interface
 class UserSrv implements userSrv {
     // NOTE declare our property types
     private _userRepo: userRepo
     private _req: request
+    private _str: storage
 
     // NOTE Constructure Of Class UserSrv
-    constructor(userRepo: userRepo, req: request) {
+    constructor(userRepo: userRepo, req: request, str: storage) {
         this._userRepo = userRepo
         this._req = req
+        this._str = str
     }
 
     // NOTE Method "signin" โดยจะมี Parameter เป็น Type "loginModel"
@@ -29,13 +33,13 @@ class UserSrv implements userSrv {
 
         // storage.Clear()
         // NOTE SET Local Storage
-        storage.Set('accesstoken', val.accesstoken)
+        this._str.Set('accesstoken', val.accesstoken)
         return true
     }
 
     // NOTE Method "signup"
     public async SignOut(): Promise<boolean> {
-        storage.Clear()
+        this._str.Clear()
         return true
     }
 
@@ -50,4 +54,4 @@ class UserSrv implements userSrv {
 }
 
 // NOTE สร้าง Object จาก Class และ Return ออกไปสู่โลกภายนอก
-export default new UserSrv(UserRepo, req)
+export default new UserSrv(UserRepo, req, str)
