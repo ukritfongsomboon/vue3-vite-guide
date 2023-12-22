@@ -9,6 +9,8 @@ export type { userSigninModel }
 // TODO ---------------------------------
 interface userRepo {
     SignInAPI(payload: userSigninModel): Promise<[customError | null, any]>
+    
+    GetUsers(): any
 }
 
 export type { userRepo }

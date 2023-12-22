@@ -1,6 +1,5 @@
 import { loginModel } from '@/models/loginModels'
 import { userSrv } from '@/services/user'
-import { request } from '@/utils/request/request'
 import { userRepo } from '@/repositories/user'
 
 // import UserRepo from '@/repositories/userAPI'
@@ -12,13 +11,11 @@ import { storage } from '@/utils/storage/storage'
 class UserSrv implements userSrv {
     // NOTE declare our property types
     private _userRepo: userRepo
-    private _req: request
     private _str: storage
 
     // NOTE Constructure Of Class UserSrv
-    constructor(userRepo: userRepo, req: request, str: storage) {
+    constructor(userRepo: userRepo,str: storage) {
         this._userRepo = userRepo
-        this._req = req
         this._str = str
     }
 
@@ -48,9 +45,6 @@ class UserSrv implements userSrv {
         return true
     }
 
-    public async GetUsers() {
-        return await this._req.Send({ url: 'https://jsonplaceholder.typicode.com/users', method: 'get' })
-    }
 }
 
 // NOTE สร้าง Object จาก Class และ Return ออกไปสู่โลกภายนอก
